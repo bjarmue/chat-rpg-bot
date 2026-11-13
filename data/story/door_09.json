@@ -1,0 +1,47 @@
+{
+  "door": 9,
+  "title": "Die Brücke der Gefrorenen Träume",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Eine Brücke aus Eis trägt nur, wer ehrlich ist.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "riddle",
+    "question": "✍️ TODO: Rätselszene ausformulieren. Rätsel: Ich habe einen Mund, aber nie Hunger, und ich laufe, obwohl ich nie müde werde. Was bin ich?",
+    "answer": "ein fluss",
+    "alternatives": [],
+    "xp": 40,
+    "loot": [
+      "heiltrank"
+    ],
+    "flavor": "Die Chronisten notieren deinen Scharfsinn."
+  }
+}

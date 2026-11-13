@@ -1,0 +1,48 @@
+{
+  "door": 16,
+  "title": "Der Frostgolem",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Aus Eis und alter Magie geformt: Der Wächter des Eismeeres.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "fight",
+    "name": "Frostgolem",
+    "intro": "✍️ TODO: Kampf-Intro für Frostgolem schreiben (2–3 Sätze).",
+    "hp": 140,
+    "atk": 11,
+    "def": 3,
+    "loot": [
+      "glanzruestung"
+    ],
+    "xp": 50
+  }
+}

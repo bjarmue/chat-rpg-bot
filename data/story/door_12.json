@@ -1,0 +1,47 @@
+{
+  "door": 12,
+  "title": "Der halbe Weg",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: In der Mitte der Reise liegt ein stiller See — Zeit für Erinnerungen und ein Rätsel des Sees.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "riddle",
+    "question": "✍️ TODO: Rätselszene ausformulieren. Rätsel: Ich komme einmal im Jahr, habe aber 365 Tage. Was bin ich?",
+    "answer": "weihnachten",
+    "alternatives": [],
+    "xp": 40,
+    "loot": [
+      "heiltrank"
+    ],
+    "flavor": "Die Chronisten notieren deinen Scharfsinn."
+  }
+}

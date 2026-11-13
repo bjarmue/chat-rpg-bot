@@ -1,0 +1,47 @@
+{
+  "door": 3,
+  "title": "Die Glühwürmchenlichtung",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Auf einer Lichtung tanzen seltsame Lichter — und ein Schatten huscht zwischen den Stämmen.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "riddle",
+    "question": "✍️ TODO: Rätselszene ausformulieren. Rätsel: Ich bin nicht weiß, obwohl ich im Schnee lebe, und nicht warm, obwohl ich im Ofen schlafe. Was bin ich?",
+    "answer": "eine kohle",
+    "alternatives": [],
+    "xp": 40,
+    "loot": [
+      "heiltrank"
+    ],
+    "flavor": "Die Chronisten notieren deinen Scharfsinn."
+  }
+}

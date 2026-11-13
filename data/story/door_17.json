@@ -1,0 +1,75 @@
+{
+  "door": 17,
+  "title": "Über das Eismeer",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Die Gruppe muss das zugefrorene Meer überqueren — wie, das entscheidet die Gruppe.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "interaction",
+    "title": "Die Gruppe berät",
+    "question": "✍️ TODO: Szene ausformulieren. Das Eismeer liegt still da. Wie überquert die Gruppe es?",
+    "options": [
+      {
+        "key": "schlitten",
+        "label": "Mit dem reparierten Schlitten",
+        "emoji": "🛷",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "fuesse",
+        "label": "Zu Fuß, langsam und vorsichtig",
+        "emoji": "🥾",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "eissegel",
+        "label": "Mit einem improvisierten Eissegel",
+        "emoji": "⛵",
+        "loot": [
+          "plaetzchen"
+        ]
+      }
+    ],
+    "outcomes": {
+      "schlitten": "✍️ TODO: Ausgang beschreiben.",
+      "fuesse": "✍️ TODO: Ausgang beschreiben.",
+      "eissegel": "✍️ TODO: Ausgang beschreiben."
+    },
+    "loot": [
+      "plaetzchen"
+    ]
+  }
+}

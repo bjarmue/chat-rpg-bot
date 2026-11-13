@@ -1,0 +1,48 @@
+{
+  "door": 10,
+  "title": "Der Schneewolf-Rudel",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Hungrige Augen leuchten zwischen den Schneeverwehungen.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "fight",
+    "name": "Schneewolf-Alpha",
+    "intro": "✍️ TODO: Kampf-Intro für Schneewolf-Alpha schreiben (2–3 Sätze).",
+    "hp": 110,
+    "atk": 9,
+    "def": 2,
+    "loot": [
+      "eiszapfenlanze"
+    ],
+    "xp": 45
+  }
+}

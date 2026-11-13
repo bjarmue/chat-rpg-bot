@@ -1,0 +1,75 @@
+{
+  "door": 13,
+  "title": "Der gestohlene Schlitten",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Der Schlitten des Weihnachtsmanns! Aber wo ist der Weihnachtsmann?",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "interaction",
+    "title": "Die Gruppe berät",
+    "question": "✍️ TODO: Szene ausformulieren. Der Schlitten ist da — aber die Rentiere sind verschwunden. Wie sucht die Gruppe?",
+    "options": [
+      {
+        "key": "spuren",
+        "label": "Den Spuren im Schnee folgen",
+        "emoji": "🐾",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "rufen",
+        "label": "Die Rentiere beim Namen rufen",
+        "emoji": "📣",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "futter",
+        "label": "Lockfutter aus dem Schlitten auslegen",
+        "emoji": "🥕",
+        "loot": [
+          "plaetzchen"
+        ]
+      }
+    ],
+    "outcomes": {
+      "spuren": "✍️ TODO: Ausgang beschreiben.",
+      "rufen": "✍️ TODO: Ausgang beschreiben.",
+      "futter": "✍️ TODO: Ausgang beschreiben."
+    },
+    "loot": [
+      "plaetzchen"
+    ]
+  }
+}

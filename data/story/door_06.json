@@ -1,0 +1,47 @@
+{
+  "door": 6,
+  "title": "Das Eisrätselfelsen-Tor",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Ein steinernes Tor versperrt den Pass — nur wer sein Rätsel löst, darf hindurch.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "riddle",
+    "question": "✍️ TODO: Rätselszene ausformulieren. Rätsel: Je mehr du von mir nimmst, desto größer werde ich. Was bin ich?",
+    "answer": "ein loch",
+    "alternatives": [],
+    "xp": 40,
+    "loot": [
+      "heiltrank"
+    ],
+    "flavor": "Die Chronisten notieren deinen Scharfsinn."
+  }
+}

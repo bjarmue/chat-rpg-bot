@@ -1,0 +1,48 @@
+{
+  "door": 4,
+  "title": "Der Bär mit dem Zimtgeruch",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Ein gewaltiger Winterbär blockiert den Weg — doch etwas an ihm ist ungewohnt.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "fight",
+    "name": "Winterbär",
+    "intro": "✍️ TODO: Kampf-Intro für Winterbär schreiben (2–3 Sätze).",
+    "hp": 90,
+    "atk": 7,
+    "def": 1,
+    "loot": [
+      "polarfuchspelz"
+    ],
+    "xp": 40
+  }
+}

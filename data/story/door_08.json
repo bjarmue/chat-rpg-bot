@@ -1,0 +1,75 @@
+{
+  "door": 8,
+  "title": "Die Bergschenke „Zum Polaren Hirsch“",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Eine warme Schenke mitten im Schnee — Reisende, Gerüchte und ein verdächtiger Fremder.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "interaction",
+    "title": "Die Gruppe berät",
+    "question": "✍️ TODO: Szene ausformulieren. Der verdächtige Fremde in der Schenke erzählt vom Frostkönig. Was tut die Gruppe?",
+    "options": [
+      {
+        "key": "zuhoeren",
+        "label": "Ihm aufmerksam zuhören",
+        "emoji": "👂",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "fragen",
+        "label": "Ihn mit Fragen löchern",
+        "emoji": "❓",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "spielen",
+        "label": "Ihn zu einem Würfelspiel herausfordern",
+        "emoji": "🎲",
+        "loot": [
+          "plaetzchen"
+        ]
+      }
+    ],
+    "outcomes": {
+      "zuhoeren": "✍️ TODO: Ausgang beschreiben.",
+      "fragen": "✍️ TODO: Ausgang beschreiben.",
+      "spielen": "✍️ TODO: Ausgang beschreiben."
+    },
+    "loot": [
+      "plaetzchen"
+    ]
+  }
+}

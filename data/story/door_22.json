@@ -1,0 +1,47 @@
+{
+  "door": 22,
+  "title": "Der Thronsaal",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Der Frostkönig wartet — doch vielleicht ist mehr an seiner Geschichte, als man dachte.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "riddle",
+    "question": "✍️ TODO: Rätselszene ausformulieren. Rätsel: Ich bin kälter als Eis und dennoch brenne ich. Was bin ich?",
+    "answer": "hass",
+    "alternatives": [],
+    "xp": 40,
+    "loot": [
+      "heiltrank"
+    ],
+    "flavor": "Die Chronisten notieren deinen Scharfsinn."
+  }
+}

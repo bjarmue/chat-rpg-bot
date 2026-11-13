@@ -1,0 +1,48 @@
+{
+  "door": 14,
+  "title": "Die Werkstatt im Schnee",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Eine verlassene Wichtelwerkstatt — Maschinen laufen noch, Werkler fehlen.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "fight",
+    "name": "Außer Kontrolle geratene Werkzeugmaschine",
+    "intro": "✍️ TODO: Kampf-Intro für Außer Kontrolle geratene Werkzeugmaschine schreiben (2–3 Sätze).",
+    "hp": 120,
+    "atk": 9,
+    "def": 2,
+    "loot": [
+      "zinnpanzer"
+    ],
+    "xp": 45
+  }
+}

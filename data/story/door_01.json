@@ -1,0 +1,38 @@
+{
+  "door": 1,
+  "title": "Die Nacht, in der der Stern erlosch",
+  "morning": {
+    "text": "Es ist die längste Nacht des Jahres. Über Frosthaven, dem kleinen Städtchen am Rande des Ewigen Winterwaldes, hat immer ein Stern geleuchtet — der Weihnachtsstern, wärmer als tausend Kerzen. Doch heute Morgen ist der Himmel schwarz und kalt. Der Stern ist verschwunden.\n\nAuf dem Marktplatz versammeln sich die Bewohner: die Wichtel der Werkstatt, die Elfen des Winterwaldes, Zwerge aus den Eisminen und die Schneewesen der Hügel. Alte Mirella, die Sternenleserin, hebt den Kopf: »Der Frostkönig hat den Stern geraubt und in seinen Palast jenseits des Eismeeres getragen. Ohne ihn wird diese Weihnacht die kälteste und dunkelste aller Zeiten. Wer von euch ist mutig genug, ihn zurückzuholen?«\n\nUnd du — du spürst, wie dein Herz schneller schlägt. Das Abenteuer deines Lebens beginnt."
+  },
+  "afternoon": {
+    "type": "interaction",
+    "title": "Der Aufbruch",
+    "question": "Am Abend versammelt sich die Gruppe am Stadttor von Frosthaven. Drei Wege führen von hier fort — für welchen Weg stimmt die Gruppe?",
+    "options": [
+      {
+        "key": "wald",
+        "label": "Durch den Winterwald",
+        "emoji": "🌲",
+        "loot": ["plaetzchen"]
+      },
+      {
+        "key": "berge",
+        "label": "Über das Frostgebirge",
+        "emoji": "🏔️",
+        "loot": ["wollmantel"]
+      },
+      {
+        "key": "fluss",
+        "label": "Den vereisten Fluss entlang",
+        "emoji": "🧊",
+        "loot": ["holzschwert"]
+      }
+    ],
+    "outcomes": {
+      "wald": "Der Waldweg ist verwunschen, aber die Bäume flüstern freundlich.",
+      "berge": "Der Bergweg ist steil und eisig, aber die Aussicht ist grandios.",
+      "fluss": "Der Flussweg ist glatt und tückisch, aber schnell."
+    },
+    "loot": ["plaetzchen"]
+  }
+}

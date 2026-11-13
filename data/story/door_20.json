@@ -1,0 +1,75 @@
+{
+  "door": 20,
+  "title": "Die Eisburg des Zweifels",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Palastmauern zeigen jedem seine größte Sorge.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "interaction",
+    "title": "Die Gruppe berät",
+    "question": "✍️ TODO: Szene ausformulieren. Die Eisburg zeigt jedem seine größte Sorge. Wie geht die Gruppe damit um?",
+    "options": [
+      {
+        "key": "zusammen",
+        "label": "Sich gegenseitig festhalten und weitergehen",
+        "emoji": "🤝",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "augen",
+        "label": "Die Augen schließen und durchlaufen",
+        "emoji": "🙈",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "antwort",
+        "label": "Jeder spricht seine Sorge laut aus",
+        "emoji": "🗣️",
+        "loot": [
+          "plaetzchen"
+        ]
+      }
+    ],
+    "outcomes": {
+      "zusammen": "✍️ TODO: Ausgang beschreiben.",
+      "augen": "✍️ TODO: Ausgang beschreiben.",
+      "antwort": "✍️ TODO: Ausgang beschreiben."
+    },
+    "loot": [
+      "plaetzchen"
+    ]
+  }
+}

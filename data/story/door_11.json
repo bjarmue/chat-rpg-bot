@@ -1,0 +1,75 @@
+{
+  "door": 11,
+  "title": "Das Dorf der Schneewesen",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Ein Dorf aus lebendigen Schneemännern bittet um Hilfe.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "interaction",
+    "title": "Die Gruppe berät",
+    "question": "✍️ TODO: Szene ausformulieren. Die Schneewesen bitten um Hilfe gegen das Tauwetter. Was schlägt die Gruppe vor?",
+    "options": [
+      {
+        "key": "schatten",
+        "label": "Ein Schatzdach aus Tannenzweigen bauen",
+        "emoji": "🌲",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "eis",
+        "label": "Eisblöcke aus dem See heranschaffen",
+        "emoji": "🧊",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "reise",
+        "label": "Den Schneewesen eine Reise in den Norden vorschlagen",
+        "emoji": "🧭",
+        "loot": [
+          "plaetzchen"
+        ]
+      }
+    ],
+    "outcomes": {
+      "schatten": "✍️ TODO: Ausgang beschreiben.",
+      "eis": "✍️ TODO: Ausgang beschreiben.",
+      "reise": "✍️ TODO: Ausgang beschreiben."
+    },
+    "loot": [
+      "plaetzchen"
+    ]
+  }
+}

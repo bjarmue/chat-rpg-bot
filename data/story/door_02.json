@@ -1,0 +1,75 @@
+{
+  "door": 2,
+  "title": "Der Flüsterwald",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Der Weg führt in den Winterwald, wo die Bäume flüstern und die Wege sich verschieben.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "interaction",
+    "title": "Die Gruppe berät",
+    "question": "✍️ TODO: Szene ausformulieren. Am Waldrand spaltet sich der Pfad: Wie will die Gruppe vorgehen?",
+    "options": [
+      {
+        "key": "pfeile",
+        "label": "Den Markierungen der Wichtel folgen",
+        "emoji": "🪧",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "sterne",
+        "label": "Nach den Sternen navigieren",
+        "emoji": "⭐",
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "fuehrer",
+        "label": "Ein flüsterndem Baum um Führung bitten",
+        "emoji": "🌲",
+        "loot": [
+          "plaetzchen"
+        ]
+      }
+    ],
+    "outcomes": {
+      "pfeile": "✍️ TODO: Ausgang beschreiben.",
+      "sterne": "✍️ TODO: Ausgang beschreiben.",
+      "fuehrer": "✍️ TODO: Ausgang beschreiben."
+    },
+    "loot": [
+      "plaetzchen"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "door": 19,
+  "title": "Der Schneesturm",
+  "morning": {
+    "text": "✍️ TODO-STORY: Hier deine Geschichte ausformulieren (2–4 Absätze). Premise dieser Tür: Ein Sturm wie aus tausend Messern — Schutz finden, bevor es zu spät ist.",
+    "choices": [
+      {
+        "key": "a",
+        "label": "Mutig direkt angehen",
+        "emoji": "🔥",
+        "xp": 20,
+        "loot": [
+          "plaetzchen"
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Umsichtig beobachten",
+        "emoji": "👀",
+        "xp": 20,
+        "loot": [
+          "wollmantel"
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Klug umgehen",
+        "emoji": "🧠",
+        "xp": 20,
+        "loot": [
+          "holzschwert"
+        ]
+      }
+    ]
+  },
+  "afternoon": {
+    "type": "fight",
+    "name": "Sturmdämon",
+    "intro": "✍️ TODO: Kampf-Intro für Sturmdämon schreiben (2–3 Sätze).",
+    "hp": 150,
+    "atk": 12,
+    "def": 3,
+    "loot": [
+      "heiltrank",
+      "kristallkugel"
+    ],
+    "xp": 55
+  }
+}
