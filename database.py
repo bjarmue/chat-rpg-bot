@@ -73,6 +73,29 @@ CREATE TABLE IF NOT EXISTS trades (
     status TEXT DEFAULT 'offen',
     message_id INTEGER
 );
+CREATE TABLE IF NOT EXISTS story_state (
+    guild_id INTEGER PRIMARY KEY,
+    current_door INTEGER
+);
+CREATE TABLE IF NOT EXISTS fight_state (
+    guild_id INTEGER,
+    door INTEGER,
+    hp INTEGER,
+    max_hp INTEGER,
+    atk INTEGER,
+    round INTEGER DEFAULT 1,
+    alive INTEGER DEFAULT 1,
+    day TEXT,
+    PRIMARY KEY (guild_id, door)
+);
+CREATE TABLE IF NOT EXISTS day_state (
+    guild_id INTEGER,
+    day TEXT,
+    morning_done INTEGER DEFAULT 0,
+    afternoon_done INTEGER DEFAULT 0,
+    retreat_door INTEGER,
+    PRIMARY KEY (guild_id, day)
+);
 CREATE TABLE IF NOT EXISTS resolutions (
     guild_id INTEGER,
     door INTEGER,
@@ -117,6 +140,72 @@ async def execute(query: str, params: tuple = ()):
     async with aiosqlite.connect(DB_PATH) as db:
         await db.execute(query, params)
         await db.commit()
+
+
+async def get_story_door(guild_id: int):
+    row = await fetchone("SELECT current_door FROM story_state WHERE guild_id = ?", (guild_id,))
+    return row["current_door"] if row else None
+
+
+async def set_story_door(guild_id: int, door: int):
+    await execute(
+        "INSERT INTO story_state (guild_id, current_door) VALUES (?, ?) "
+        "ON CONFLICT(guild_id) DO UPDATE SET current_door = excluded.current_door",
+        (guild_id, door),
+    )
+
+
+async def get_fight_state(guild_id: int, door: int):
+    return await fetchone(
+        "SELECT * FROM fight_state WHERE guild_id = ? AND door = ?", (guild_id, door)
+    )
+
+
+async def upsert_fight_state(guild_id: int, door: int, hp: int, atk: int, round_no: int, day: str):
+    await execute(
+        "INSERT INTO fight_state (guild_id, door, hp, max_hp, atk, round, alive, day) "
+        "VALUES (?, ?, ?, ?, ?, ?, 1, ?) "
+        "ON CONFLICT(guild_id, door) DO UPDATE SET hp = excluded.hp, max_hp = excluded.max_hp, "
+        "atk = excluded.atk, round = excluded.round, alive = 1, day = excluded.day",
+        (guild_id, door, hp, hp, atk, round_no, day),
+    )
+
+
+async def mark_fight_dead(guild_id: int, door: int):
+    await execute(
+        "UPDATE fight_state SET alive = 0 WHERE guild_id = ? AND door = ?", (guild_id, door)
+    )
+
+
+async def get_day_state(guild_id: int, day: str):
+    return await fetchone(
+        "SELECT * FROM day_state WHERE guild_id = ? AND day = ?", (guild_id, day)
+    )
+
+
+async def set_day_state(guild_id: int, day: str, **fields):
+    row = await get_day_state(guild_id, day)
+    if row:
+        updates = []
+        params = []
+        for key in ("morning_done", "afternoon_done", "retreat_door"):
+            if key in fields:
+                updates.append(f"{key} = ?")
+                params.append(fields[key])
+        if updates:
+            params.extend([guild_id, day])
+            await execute(f"UPDATE day_state SET {', '.join(updates)} WHERE guild_id = ? AND day = ?", tuple(params))
+    else:
+        await execute(
+            "INSERT INTO day_state (guild_id, day, morning_done, afternoon_done, retreat_door) VALUES (?, ?, ?, ?, ?)",
+            (
+                guild_id,
+                day,
+                fields.get("morning_done", 0),
+                fields.get("afternoon_done", 0),
+                fields.get("retreat_door"),
+            ),
+        )
 
 
 async def get_channel_id(guild_id: int):

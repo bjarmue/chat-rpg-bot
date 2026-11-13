@@ -12,7 +12,8 @@ Ein Discord-Bot für ein gemeinsames Weihnachts-Fantasy-RPG im Advent: Jeden Tag
   - 🗳️ **Gruppenentscheidung** (Mehrheit entscheidet, Ergebnis am nächsten Morgen)
 - **XP & Level**: Level erhöhen maximale LP und Werte (`/profil`, `/bestenliste`)
 - **Inventar & Tauschen**: `/inventar`, `/ausruesten`, `/benutzen`, `/tauschen`
-- **Fair für jede Gruppengröße**: Boss-HP skaliert automatisch mit der Zahl der Helden (Solo ≈ 35 %, 3 Spieler = 100 %, große Gruppen bis 250 %). Kämpfe bleiben über Tage bestehen — jeden Morgen füllt der Bot LP und Aktionen auf. **Das Happy End ist also garantiert erreichbar**, egal wie groß die Gruppe ist.
+- **Fair für jede Gruppengröße**: Boss-HP skaliert automatisch mit der Zahl der Helden (Solo ≈ 35 %, 3 Spieler = 100 %, große Gruppen bis 250 %). Kämpfe bleiben über Tage bestehen — jeden Morgen füllt der Bot LP und Aktionen auf.
+- **Rückzugstage & Story-Kompression**: Schafft die Gruppe einen Bosskampf an einem Tag nicht, gibt es am nächsten Morgen einen **Rückzug & Neuformierungs**-Post und nachmittags einen **zweiten, deutlich leichteren Anlauf** (halbe Boss-HP, 25 % weniger Angriff — stapelt bei weiteren Tagen). Dafür wird ein Kapitel **gestaucht** (als Kurzfassung im Rückzugspost zusammengefasst), damit Tür 24 sicher am **24. Dezember** landet. Das Finale (Tür 24) wird nie übersprungen; ein offener Finalkampf wird auch über den 24. hinaus bis zum Sieg fortgeführt. **Das Happy End ist garantiert.**
 - **Story frei editierbar**: Ein Kapitel pro Datei in `data/story/` — siehe [STORY-SCHREIBEN.md](STORY-SCHREIBEN.md)
 
 ## Einrichtung

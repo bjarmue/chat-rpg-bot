@@ -10,6 +10,7 @@ Die ganze Geschichte lebt in `data/story/` — **eine JSON-Datei pro Tür** (`do
   "title": "Der Titel des Kapitels",
   "morning": {
     "text": "Der morgendliche Story-Abschnitt (2–4 Absätze). \n\n Erzeugt neue Zeilen.",
+    "retreat_text": "Optional: Eigener Text für den Rückzugstag, falls der Kampf des Vortags nicht geschafft wurde. Ohne dieses Feld erscheint ein generischer Rückzugstext.",
     "choices": [
       {
         "key": "a",
@@ -49,7 +50,9 @@ Regeln:
 
 Alle, die mitkämpfen, bekommen Loot + XP. Richtwerte (für eine 3-Personen-Gruppe): Tür 4–8 `hp 90–110`, Tür 10–16 `hp 110–140`, Tür 19–24 `hp 150–180`.
 
-Die Boss-HP wird beim Kampfstart automatisch an die Gruppengröße angepasst: Solo ≈ 35 %, 2 Spieler ≈ 67 %, 3 Spieler = 100 %, große Gruppen bis 250 %. Kämpfe bleiben außerdem über Tage bestehen — jeden Morgen füllt der Bot LP und Aktionen aller Helden auf. Kein Boss kann die Gruppe also dauerhaft aufhalten: Das Happy End am 24. Dezember ist garantiert erreichbar.
+Die Boss-HP wird beim Kampfstart automatisch an die Gruppengröße angepasst: Solo ≈ 35 %, 2 Spieler ≈ 67 %, 3 Spieler = 100 %, große Gruppen bis 250 %. Kämpfe bleiben außerdem über Tage bestehen — jeden Morgen füllt der Bot LP und Aktionen aller Helden auf.
+
+**Rückzugstage:** Schafft die Gruppe einen Kampf an einem Tag nicht, folgt am nächsten Morgen ein Rückzugspost (eigener Text optional über `morning.retreat_text`) und am Nachmittag ein zweiter, leichterer Anlauf (halbe Boss-HP, 25 % weniger Angriff — bei weiteren Tagen jeweils nochmal leichter). Dafür wird das nächste Kapitel gestaucht und als Kurzfassung im Rückzugspost erwähnt. So endet die Geschichte sicher am 24. Dezember; das Finale (Tür 24) wird nie übersprungen.
 
 ### 🧩 Rätsel
 

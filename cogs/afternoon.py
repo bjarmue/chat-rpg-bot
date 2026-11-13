@@ -48,7 +48,10 @@ class FightView(discord.ui.View):
     async def _finish_victory(self, channel: discord.TextChannel):
         fight = self.fight
         guild_id = channel.guild.id
+        await database.mark_fight_dead(guild_id, self.door)
         lines = [f"🎉 **{fight['name']}** ist besiegt! Die Gruppe triumphiert."]
+        if self.door == 24:
+            lines.append("🎄 **Frohe Weihnachten!** Der Weihnachtsstern leuchtet wieder über Frosthaven — das Fest kann beginnen!")
         loot = fight.get("loot", [])
         rows = await database.fetchall(
             "SELECT user_id FROM fight_actions WHERE guild_id = ? AND door = ? AND actions > 0",
@@ -293,7 +296,7 @@ class AfternoonCog(commands.Cog):
         )
         return leveled
 
-    async def post_afternoon(self, channel: discord.TextChannel, door: int):
+    async def post_afternoon(self, channel: discord.TextChannel, door: int, easier: bool = False):
         data = load_door(door)
         if not data:
             return
@@ -303,18 +306,79 @@ class AfternoonCog(commands.Cog):
         kind = afternoon["type"]
         if kind == "fight":
             key = (channel.guild.id, door)
+            today = now().date().isoformat()
+            state = await database.get_fight_state(channel.guild.id, door)
             fight = self.fights.get(key)
-            if not fight:
+            if easier:
+                round_no = (state["round"] + 1) if state else 2
+                party_row = await database.fetchone(
+                    "SELECT COUNT(*) AS c FROM players WHERE guild_id = ?", (channel.guild.id,)
+                )
+                scale = min(2.5, max(0.35, party_row["c"] / 3))
+                boss_hp = max(10, round(afternoon["hp"] * scale * 0.5 ** (round_no - 1)))
+                boss_atk = max(1, round(afternoon.get("atk", 6) * 0.75 ** (round_no - 1)))
+                if fight and state and fight["hp"] > 0:
+                    fight["hp"] = boss_hp
+                    fight["max_hp"] = boss_hp
+                    fight["atk"] = boss_atk
+                    fight["intro"] = (
+                        f"**Zweiter Anlauf!** Nach dem Rückzug stellt sich **{afternoon['name']}** erneut — "
+                        "doch die Gruppe ist ausgeruht und der Gegner angeschlagen."
+                    )
+                    if fight.get("message"):
+                        try:
+                            await fight["message"].edit(view=None)
+                        except discord.HTTPException:
+                            pass
+                    fight["message"] = None
+                else:
+                    fight = {
+                        "name": afternoon["name"],
+                        "hp": boss_hp,
+                        "max_hp": boss_hp,
+                        "atk": boss_atk,
+                        "def": afternoon.get("def", 0),
+                        "intro": (
+                            f"**Zweiter Anlauf!** Nach dem Rückzug stellt sich **{afternoon['name']}** erneut — "
+                            "doch die Gruppe ist ausgeruht und der Gegner angeschlagen."
+                        ),
+                        "loot": afternoon.get("loot", []),
+                        "xp": afternoon.get("xp", 30),
+                        "participants": set(),
+                        "message": None,
+                    }
+                    self.fights[key] = fight
+                await database.upsert_fight_state(channel.guild.id, door, boss_hp, boss_atk, round_no, today)
+            elif state and state["alive"]:
+                round_no = state["round"]
+                if not fight:
+                    fight = {
+                        "name": afternoon["name"],
+                        "hp": state["hp"],
+                        "max_hp": state["max_hp"],
+                        "atk": state["atk"],
+                        "def": afternoon.get("def", 0),
+                        "intro": afternoon.get("intro", ""),
+                        "loot": afternoon.get("loot", []),
+                        "xp": afternoon.get("xp", 30),
+                        "participants": set(),
+                        "message": None,
+                    }
+                    self.fights[key] = fight
+                await database.upsert_fight_state(channel.guild.id, door, state["hp"], state["atk"], round_no, today)
+            else:
+                round_no = 1
                 party_row = await database.fetchone(
                     "SELECT COUNT(*) AS c FROM players WHERE guild_id = ?", (channel.guild.id,)
                 )
                 scale = min(2.5, max(0.35, party_row["c"] / 3))
                 boss_hp = max(20, round(afternoon["hp"] * scale))
+                boss_atk = afternoon.get("atk", 6)
                 fight = {
                     "name": afternoon["name"],
                     "hp": boss_hp,
                     "max_hp": boss_hp,
-                    "atk": afternoon.get("atk", 6),
+                    "atk": boss_atk,
                     "def": afternoon.get("def", 0),
                     "intro": afternoon.get("intro", ""),
                     "loot": afternoon.get("loot", []),
@@ -323,6 +387,7 @@ class AfternoonCog(commands.Cog):
                     "message": None,
                 }
                 self.fights[key] = fight
+                await database.upsert_fight_state(channel.guild.id, door, boss_hp, boss_atk, round_no, today)
             embed = discord.Embed(
                 title=f"⚔️ Tür {door} · {fight['name']}",
                 description=fight["intro"],

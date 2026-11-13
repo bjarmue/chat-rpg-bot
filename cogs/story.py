@@ -3,7 +3,7 @@ from discord.ext import commands
 
 import database
 from game_data import max_hp
-from utils import current_door, load_door
+from utils import load_door
 
 
 class ChoiceView(discord.ui.View):
@@ -43,7 +43,7 @@ class StoryCog(commands.Cog):
             (guild_id,),
         )
 
-    async def post_morning(self, channel: discord.TextChannel, door: int):
+    async def post_morning(self, channel: discord.TextChannel, door: int, skipped: list[int] | None = None, abandoned: int | None = None):
         await self.restore_party(channel.guild.id)
         if door > 1:
             afternoon_cog = self.bot.get_cog("AfternoonCog")
@@ -58,7 +58,22 @@ class StoryCog(commands.Cog):
             description=morning["text"],
             color=0x2E86C1,
         )
-        embed.set_footer(text="Morgengruß aus Frosthaven · Alle Helden erwischen frische Kräfte (volle LP)")
+        if skipped:
+            summary = []
+            for n in skipped:
+                skipped_data = load_door(n)
+                title = skipped_data.get("title", "?") if skipped_data else "?"
+                summary.append(f"**Tür {n} · {title}** — unterwegs gestaucht: die Gruppe meisterte diesen Abschnitt im Vorbeiziehen.")
+            embed.add_field(name="⏩ Unterwegs gestaucht", value="\n".join(summary), inline=False)
+        if abandoned:
+            abandoned_data = load_door(abandoned)
+            boss = abandoned_data.get("afternoon", {}).get("name", "der Gegner") if abandoned_data else "der Gegner"
+            embed.add_field(
+                name="🏃 Zurückgelassen",
+                value=f"**{boss}** (Tür {abandoned}) wurde im Sturm zurückgelassen, damit ihr das Weihnachtsfest erreicht — manche Kämpfe bleiben eben ungeschlagen.",
+                inline=False,
+            )
+        embed.set_footer(text="Morgengruß aus Frosthaven · Alle Helden erwachen mit frischen Kräften (volle LP und Aktionen)")
         if door == 1:
             embed.add_field(
                 name="🎄 Tür 1: Erschaffe deinen Helden",
@@ -75,6 +90,32 @@ class StoryCog(commands.Cog):
                 inline=False,
             )
         await channel.send(embed=embed, view=ChoiceView(self, door, choices))
+
+    async def post_retreat(self, channel: discord.TextChannel, door: int, fight, skipped_door: int | None):
+        await self.restore_party(channel.guild.id)
+        data = load_door(door)
+        boss = data.get("afternoon", {}).get("name", "der Gegner") if data else "der Gegner"
+        custom = data.get("morning", {}).get("retreat_text") if data else None
+        text = custom or (
+            f"**{boss}** war stärker als gedacht — die Gruppe zieht sich in ein sicheres Lager zurück. "
+            "Am Feuer werden Wunden verbunden, Pläne geschmiedet und Mut getankt. "
+            "Am Nachmittag folgt der zweite Anlauf: Ihr seid ausgeruht, und der Gegner ist angeschlagen."
+        )
+        embed = discord.Embed(
+            title=f"🚪 Tür {door} · Rückzug und Neuformierung",
+            description=text,
+            color=0x5D6D7E,
+        )
+        if skipped_door:
+            skipped_data = load_door(skipped_door)
+            title = skipped_data.get("title", "?") if skipped_data else "?"
+            embed.add_field(
+                name="⏩ Kapitel gestaucht",
+                value=f"**Tür {skipped_door} · {title}** — dieser Abschnitt wird unterwegs im Schnelldurchlauf gemeistert, damit das Fest am 24. Dezember steigt.",
+                inline=False,
+            )
+        embed.set_footer(text="Ruhetag · LP und Aktionen sind voll · Der zweite Anlauf wartet am Nachmittag")
+        await channel.send(embed=embed)
 
     async def handle_choice(self, interaction: discord.Interaction, door: int, choice: dict):
         guild_id = interaction.guild_id
