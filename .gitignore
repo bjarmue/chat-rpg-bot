@@ -1,0 +1,5 @@
+.env
+advent_rpg.sqlite3
+__pycache__/
+*.pyc
+.venv/
