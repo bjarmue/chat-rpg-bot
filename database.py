@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS fight_actions (
     user_id INTEGER,
     actions INTEGER DEFAULT 0,
     ability_used INTEGER DEFAULT 0,
+    day TEXT,
     PRIMARY KEY (guild_id, door, user_id)
 );
 CREATE TABLE IF NOT EXISTS riddle_answers (
@@ -91,6 +92,10 @@ CREATE TABLE IF NOT EXISTS schedule (
 async def init_db():
     async with aiosqlite.connect(DB_PATH) as db:
         await db.executescript(SCHEMA)
+        try:
+            await db.execute("ALTER TABLE fight_actions ADD COLUMN day TEXT")
+        except aiosqlite.OperationalError:
+            pass
         await db.commit()
 
 

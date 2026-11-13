@@ -5,7 +5,7 @@ from discord.ext import commands
 
 import database
 from game_data import CLASSES, RARITY_COLORS, boss_damage, roll_damage
-from utils import item_line, load_door, player_stats
+from utils import item_line, load_door, now, player_stats
 
 ACTION_LIMIT = 5
 
@@ -79,12 +79,19 @@ class FightView(discord.ui.View):
     async def _resolve_action(self, interaction: discord.Interaction, kind: str):
         fight = self.fight
         guild_id = interaction.guild_id
+        today = now().date().isoformat()
         row = await database.fetchone(
-            "SELECT actions, ability_used FROM fight_actions WHERE guild_id = ? AND door = ? AND user_id = ?",
+            "SELECT actions, ability_used, day FROM fight_actions WHERE guild_id = ? AND door = ? AND user_id = ?",
             (guild_id, self.door, interaction.user.id),
         )
-        actions = row["actions"] if row else 0
-        ability_used = bool(row and row["ability_used"])
+        stale = bool(row and row["day"] != today)
+        if stale:
+            await database.execute(
+                "UPDATE fight_actions SET actions = 0, ability_used = 0 WHERE guild_id = ? AND door = ? AND user_id = ?",
+                (guild_id, self.door, interaction.user.id),
+            )
+        actions = 0 if stale or not row else row["actions"]
+        ability_used = False if stale or not row else bool(row["ability_used"])
         if actions >= ACTION_LIMIT:
             await interaction.response.send_message(
                 "Du bist erschöpft — deine Aktionen für heute sind verbraucht. "
@@ -94,6 +101,12 @@ class FightView(discord.ui.View):
             return
         info = await player_stats(guild_id, interaction.user.id)
         player = info["player"]
+        if player["hp"] <= 0 and stale:
+            await database.execute(
+                "UPDATE players SET hp = ? WHERE guild_id = ? AND user_id = ?",
+                (info["max_hp"], guild_id, interaction.user.id),
+            )
+            player = {**player, "hp": info["max_hp"]}
         if player["hp"] <= 0:
             await interaction.response.send_message(
                 "Du liegst bewusstlos im Schnee. Ein Kleriker muss dich aufrichten — oder der morgige Tag. ❄️",
@@ -101,9 +114,10 @@ class FightView(discord.ui.View):
             )
             return
         await database.execute(
-            "INSERT INTO fight_actions (guild_id, door, user_id, actions, ability_used) VALUES (?, ?, ?, 1, ?) "
-            "ON CONFLICT(guild_id, door, user_id) DO UPDATE SET actions = actions + 1, ability_used = ability_used | ?",
-            (guild_id, self.door, interaction.user.id, 1 if kind == "ability" else 0, 1 if kind == "ability" else 0),
+            "INSERT INTO fight_actions (guild_id, door, user_id, actions, ability_used, day) VALUES (?, ?, ?, 1, ?, ?) "
+            "ON CONFLICT(guild_id, door, user_id) DO UPDATE SET actions = actions + 1, ability_used = ability_used | ?, day = ?",
+            (guild_id, self.door, interaction.user.id, 1 if kind == "ability" else 0, today,
+             1 if kind == "ability" else 0, today),
         )
         fight["participants"].add(interaction.user.id)
         outcome = []
