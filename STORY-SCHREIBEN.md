@@ -47,7 +47,9 @@ Regeln:
 }
 ```
 
-Alle, die mitkämpfen, bekommen Loot + XP. Richtwerte: Tür 4–8 `hp 90–110`, Tür 10–16 `hp 110–140`, Tür 19–24 `hp 150–180`.
+Alle, die mitkämpfen, bekommen Loot + XP. Richtwerte (für eine 3-Personen-Gruppe): Tür 4–8 `hp 90–110`, Tür 10–16 `hp 110–140`, Tür 19–24 `hp 150–180`.
+
+Die Boss-HP wird beim Kampfstart automatisch an die Gruppengröße angepasst: Solo ≈ 35 %, 2 Spieler ≈ 67 %, 3 Spieler = 100 %, große Gruppen bis 250 %. Kämpfe bleiben außerdem über Tage bestehen — jeden Morgen füllt der Bot LP und Aktionen aller Helden auf. Kein Boss kann die Gruppe also dauerhaft aufhalten: Das Happy End am 24. Dezember ist garantiert erreichbar.
 
 ### 🧩 Rätsel
 

@@ -38,6 +38,10 @@ class StoryCog(commands.Cog):
                 "UPDATE players SET hp = ? WHERE guild_id = ? AND user_id = ?",
                 (max_hp(row["level"]), guild_id, row["user_id"]),
             )
+        await database.execute(
+            "UPDATE fight_actions SET actions = 0, ability_used = 0 WHERE guild_id = ?",
+            (guild_id,),
+        )
 
     async def post_morning(self, channel: discord.TextChannel, door: int):
         await self.restore_party(channel.guild.id)

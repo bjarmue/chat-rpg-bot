@@ -42,7 +42,7 @@ class FightView(discord.ui.View):
         if participants:
             names = ", ".join(f"<@{uid}>" for uid in list(participants)[:15])
             embed.add_field(name="🛡️ Im Kampf", value=names, inline=False)
-        embed.set_footer(text="Jeder Held hat 5 Aktionen pro Kampf · Fähigkeit einmalig · Block heilt dich")
+        embed.set_footer(text="Jeder Held: 5 Aktionen pro Tag · Fähigkeit 1× pro Tag · Block heilt dich · Der Kampf bleibt bestehen, bis der Gegner fällt!")
         return embed
 
     async def _finish_victory(self, channel: discord.TextChannel):
@@ -87,7 +87,8 @@ class FightView(discord.ui.View):
         ability_used = bool(row and row["ability_used"])
         if actions >= ACTION_LIMIT:
             await interaction.response.send_message(
-                "Du bist erschöpft — du hast alle deine Aktionen in diesem Kampf verbraucht. 😮‍💨",
+                "Du bist erschöpft — deine Aktionen für heute sind verbraucht. "
+                "Morgen früh erwachst du mit frischen Kräften und der Kampf geht weiter! ❄️",
                 ephemeral=True,
             )
             return
@@ -290,10 +291,15 @@ class AfternoonCog(commands.Cog):
             key = (channel.guild.id, door)
             fight = self.fights.get(key)
             if not fight:
+                party_row = await database.fetchone(
+                    "SELECT COUNT(*) AS c FROM players WHERE guild_id = ?", (channel.guild.id,)
+                )
+                scale = min(2.5, max(0.35, party_row["c"] / 3))
+                boss_hp = max(20, round(afternoon["hp"] * scale))
                 fight = {
                     "name": afternoon["name"],
-                    "hp": afternoon["hp"],
-                    "max_hp": afternoon["hp"],
+                    "hp": boss_hp,
+                    "max_hp": boss_hp,
                     "atk": afternoon.get("atk", 6),
                     "def": afternoon.get("def", 0),
                     "intro": afternoon.get("intro", ""),
@@ -313,7 +319,7 @@ class AfternoonCog(commands.Cog):
                 value=f"{'█' * 10}\n{fight['hp']} / {fight['max_hp']}",
                 inline=False,
             )
-            embed.set_footer(text="Jeder Held hat 5 Aktionen · Fähigkeit einmalig · Block heilt dich")
+            embed.set_footer(text="Jeder Held: 5 Aktionen pro Tag · Fähigkeit 1× pro Tag · Block heilt dich · Der Kampf bleibt bestehen, bis der Gegner fällt!")
             message = await channel.send(embed=embed, view=FightView(self, door, fight))
             fight["message"] = message
         elif kind == "riddle":

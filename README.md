@@ -12,6 +12,7 @@ Ein Discord-Bot für ein gemeinsames Weihnachts-Fantasy-RPG im Advent: Jeden Tag
   - 🗳️ **Gruppenentscheidung** (Mehrheit entscheidet, Ergebnis am nächsten Morgen)
 - **XP & Level**: Level erhöhen maximale LP und Werte (`/profil`, `/bestenliste`)
 - **Inventar & Tauschen**: `/inventar`, `/ausruesten`, `/benutzen`, `/tauschen`
+- **Fair für jede Gruppengröße**: Boss-HP skaliert automatisch mit der Zahl der Helden (Solo ≈ 35 %, 3 Spieler = 100 %, große Gruppen bis 250 %). Kämpfe bleiben über Tage bestehen — jeden Morgen füllt der Bot LP und Aktionen auf. **Das Happy End ist also garantiert erreichbar**, egal wie groß die Gruppe ist.
 - **Story frei editierbar**: Ein Kapitel pro Datei in `data/story/` — siehe [STORY-SCHREIBEN.md](STORY-SCHREIBEN.md)
 
 ## Einrichtung
@@ -89,5 +90,5 @@ tools/make_story_drafts.py  Erzeugt Entwürfe für Türen 2–24
 ## Tipps
 
 - **Testen vor dem 1. Dezember?** Ändere kurz die Systemzeit des Rechners — oder poste testweise manuell, indem du in `cogs/calendar.py` im Scheduler `local.hour >= 9` temporär auf `>= 0` setzt.
-- **Bot-Neustart während eines Kampfes**: Die Boss-HP wird im Speicher gehalten und startet nach einem Neustart neu — Spieler-Fortschritt (XP, Loot) geht durch die Datenbank nie verloren.
+- **Bot-Neustart während eines Kampfes**: Die Boss-HP wird im Speicher gehalten und startet nach einem Neustart neu — Spieler-Fortschritt (XP, Loot) geht durch die Datenbank nie verloren. Aktionen und LP der Helden werden jeden Morgen ohnehin aufgefrischt.
 - **Story mitgestalten**: Siehe [STORY-SCHREIBEN.md](STORY-SCHREIBEN.md) — du kannst die Kapitel direkt in den JSON-Dateien schreiben oder mir Text liefern, den ich einarbeite.
